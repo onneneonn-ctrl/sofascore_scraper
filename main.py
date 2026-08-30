@@ -10,6 +10,13 @@ import argparse
 import dotenv
 from pathlib import Path
 
+# Windows konsolunda UTF-8 karakterlerin sorunsuz yazılması için
+if sys.platform == "win32":
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 # Çalışma dizinini modülün dizinine ayarla
 script_dir = Path(__file__).resolve().parent
 os.chdir(script_dir)
